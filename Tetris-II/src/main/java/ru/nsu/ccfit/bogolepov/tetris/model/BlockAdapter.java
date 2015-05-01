@@ -61,7 +61,7 @@ public class BlockAdapter {
         }
     }
 
-    public void move(int dx, int dy) {
+    public boolean move(int dx, int dy) {
         int newX = centerX + dx;
         int newY = centerY + dy;
         if (checkCollisionsAt(newX, newY)) {
@@ -70,6 +70,9 @@ public class BlockAdapter {
             }
             field.updatePoints(points);
             placeBlockAt(newX, newY);
+            return true;
+        } else {
+            return false;
         }
     }
 
