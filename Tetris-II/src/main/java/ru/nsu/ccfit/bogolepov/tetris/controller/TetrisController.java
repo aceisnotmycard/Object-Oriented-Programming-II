@@ -6,6 +6,7 @@ import ru.nsu.ccfit.bogolepov.tetris.model.Block;
 import ru.nsu.ccfit.bogolepov.tetris.model.BlockAdapter;
 import ru.nsu.ccfit.bogolepov.tetris.model.BlockFactory;
 import ru.nsu.ccfit.bogolepov.tetris.model.Field;
+import ru.nsu.ccfit.bogolepov.tetris.sound.Sound;
 import ru.nsu.ccfit.bogolepov.tetris.view.TetrisView;
 
 import javax.swing.*;
