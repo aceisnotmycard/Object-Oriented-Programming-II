@@ -52,7 +52,6 @@ public class Field extends Observable {
         for (Point point : pointsList) {
             field[point.getX()][point.getY()] = point;
         }
-        System.out.println("Field updated!");
         setChanged();
         notifyObservers();
         return false;

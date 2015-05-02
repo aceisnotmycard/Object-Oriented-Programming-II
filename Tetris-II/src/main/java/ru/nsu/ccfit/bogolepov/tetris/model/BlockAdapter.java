@@ -65,7 +65,6 @@ public class BlockAdapter {
     public boolean move(int dx, int dy) {
         int newX = centerX + dx;
         int newY = centerY + dy;
-        System.out.println("Move block: (" + newX + ", " + newY + ")");
         if (checkCollisionsAt(newX, newY)) {
             placeBlockAt(newX, newY);
             return true;

@@ -3,44 +3,53 @@ package ru.nsu.ccfit.bogolepov.tetris.view;
 import ru.nsu.ccfit.bogolepov.tetris.event.Event;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
 import ru.nsu.ccfit.bogolepov.tetris.model.Field;
+import ru.nsu.ccfit.bogolepov.tetris.model.Score;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
-
 
 public class TetrisView extends JFrame implements ActionListener, Runnable {
-    private FieldView fieldView;
-    private FieldView previewView;
     private EventQueue eventQueue;
     private Timer timer;
 
-    public TetrisView(Field field, Field preview, EventQueue eventQueue) {
-        this.eventQueue = eventQueue;
-
-        fieldView = new FieldView(field);
-        fieldView.setSize(200, 440);
-        field.addObserver(new FieldObserver(fieldView));
-
-        previewView = new FieldView(preview);
-        previewView.setSize(100, 100);
-        preview.addObserver(new FieldObserver(previewView));
+    public TetrisView(Field field, Field preview, Score score, EventQueue eventQueue) {
+        FieldView fieldView = new FieldView(field);
+        fieldView.setPreferredSize(new Dimension(200, 440));
+        FieldView previewView = new FieldView(preview);
+        previewView.setPreferredSize(new Dimension(100, 100));
+        ScoreView scoreView = new ScoreView(score);
+        scoreView.setPreferredSize(new Dimension(100, 50));
 
         JPanel gamePanel = new JPanel();
-        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.LINE_AXIS));
-
+        gamePanel.setPreferredSize(new Dimension(200, 440));
         gamePanel.add(fieldView);
-        gamePanel.add(previewView);
-        add(gamePanel);
-        setSize(300, 440);
+
+        JPanel previewPanel = new JPanel();
+        previewPanel.setPreferredSize(new Dimension(100, 100));
+        previewPanel.add(previewView);
+
+        JPanel pointsPanel = new JPanel();
+        pointsPanel.setPreferredSize(new Dimension(100, 50));
+        pointsPanel.add(scoreView);
+
+        JPanel backPanel = new JPanel();
+        backPanel.setLayout(new BoxLayout(backPanel, BoxLayout.Y_AXIS));
+        backPanel.setPreferredSize(new Dimension(100, 440));
+        backPanel.add(previewPanel);
+        backPanel.add(pointsPanel);
+
+        add(gamePanel, BorderLayout.CENTER);
+        add(backPanel, BorderLayout.EAST);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setFocusable(true);
         setLocationRelativeTo(null);
+        pack();
         setVisible(true);
 
         timer = new Timer(400, this);
+        this.eventQueue = eventQueue;
         addKeyListener(new TetrisInputHandler(eventQueue));
     }
 
@@ -52,17 +61,5 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
     @Override
     public void actionPerformed(ActionEvent e) {
         eventQueue.addEvent(Event.GAME_STEP);
-    }
-
-    private class FieldObserver implements Observer {
-        FieldView view;
-
-        FieldObserver(FieldView view) {
-            this.view = view;
-        }
-        @Override
-        public void update(Observable o, Object arg) {
-            view.repaint();
-        }
     }
 }

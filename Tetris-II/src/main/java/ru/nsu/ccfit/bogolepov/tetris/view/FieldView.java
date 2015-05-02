@@ -3,6 +3,8 @@ package ru.nsu.ccfit.bogolepov.tetris.view;
 import ru.nsu.ccfit.bogolepov.tetris.model.Field;
 
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 public class FieldView extends GameView {
 
@@ -11,6 +13,7 @@ public class FieldView extends GameView {
     public FieldView(Field field) {
         super(field.getWidth(), field.getHeight());
         this.field = field;
+        field.addObserver(new FieldObserver());
     }
 
 
@@ -28,4 +31,10 @@ public class FieldView extends GameView {
         }
     }
 
+    private class FieldObserver implements Observer {
+        @Override
+        public void update(Observable o, Object arg) {
+            repaint();
+        }
+    }
 }

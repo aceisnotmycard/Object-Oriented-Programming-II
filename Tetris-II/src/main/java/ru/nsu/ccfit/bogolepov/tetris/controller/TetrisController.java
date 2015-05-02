@@ -2,15 +2,8 @@ package ru.nsu.ccfit.bogolepov.tetris.controller;
 
 import ru.nsu.ccfit.bogolepov.tetris.event.Event;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
-import ru.nsu.ccfit.bogolepov.tetris.model.Block;
-import ru.nsu.ccfit.bogolepov.tetris.model.BlockAdapter;
-import ru.nsu.ccfit.bogolepov.tetris.model.BlockFactory;
-import ru.nsu.ccfit.bogolepov.tetris.model.Field;
-import ru.nsu.ccfit.bogolepov.tetris.sound.Sound;
+import ru.nsu.ccfit.bogolepov.tetris.model.*;
 import ru.nsu.ccfit.bogolepov.tetris.view.TetrisView;
-
-import javax.swing.*;
-
 
 public class TetrisController {
 
@@ -23,10 +16,12 @@ public class TetrisController {
     private BlockAdapter previewAdapter;
     private TetrisView view;
     private EventQueue eventQueue;
+    private Score score;
 
     private boolean isEnded;
 
     public TetrisController(int width, int height) {
+        score = new Score();
         field = new Field(width, height);
         preview = new Field(5, 5);
         factory = new BlockFactory();
@@ -39,7 +34,7 @@ public class TetrisController {
 
     public void run() {
         isEnded = false;
-        view = new TetrisView(field, preview, eventQueue);
+        view = new TetrisView(field, preview, score, eventQueue);
         view.run();
 
         while (!isEnded) {
@@ -76,7 +71,7 @@ public class TetrisController {
                     isEnded = true;
                 }
             }
-            field.clearFilledRows();
+            score.add(field.clearFilledRows());
             currentBlock = nextBlock;
             fieldAdapter = new BlockAdapter(currentBlock, field, field.getWidth() / 2, 0);
             nextBlock = factory.createRandomBlock();

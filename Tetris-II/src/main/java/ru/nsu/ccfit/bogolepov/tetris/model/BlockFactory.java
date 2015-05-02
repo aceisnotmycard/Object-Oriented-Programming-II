@@ -8,9 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * Created by aceisnotmycard on 5/1/15.
- */
 public class BlockFactory {
     private static final String mFilename = "command_list.properties";
     private static final String SEPARATOR = "=";
@@ -38,21 +35,6 @@ public class BlockFactory {
             e.printStackTrace();
         }
     }
-
-//    public Block createInstanceOf(String commandName) {
-//        Block block = null;
-//        try {
-//            Class blockClass = Class.forName(factory.get(commandName));
-//            try {
-//                block = (Block) blockClass.newInstance();
-//            } catch (InstantiationException | IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-//        } catch (ClassNotFoundException| NullPointerException e){
-//            block = null;
-//        }
-//        return block;
-//    }
 
     public Block createRandomBlock() {
         Random generator = new Random();
