@@ -40,6 +40,10 @@ public class BlockAdapter {
         }
         block.setPattern(newPattern);
         if (checkCollisionsAt(centerX, centerY)) {
+            for (Point point : points) {
+                point.setType(null);
+            }
+            field.updatePoints(points);
             placeBlockAt(centerX, centerY);
         } else {
             block.setPattern(oldPattern);
@@ -55,6 +59,10 @@ public class BlockAdapter {
         }
         block.setPattern(newPattern);
         if (checkCollisionsAt(centerX, centerY)) {
+            for (Point point : points) {
+                point.setType(null);
+            }
+            field.updatePoints(points);
             placeBlockAt(centerX, centerY);
         } else {
             block.setPattern(oldPattern);
