@@ -1,8 +1,6 @@
 package ru.nsu.ccfit.bogolepov.tetris.model;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class BlockAdapter {
     Block block;
@@ -11,9 +9,7 @@ public class BlockAdapter {
     int centerX;
     int centerY;
 
-    /*
-    Places block on a field at (x,y)
-     */
+    /** Places block on a field at (x,y) */
     public BlockAdapter(Block block, Field field, int x, int y) {
         this.field = field;
         this.block = block;

@@ -38,13 +38,8 @@ public class TetrisController {
 
     public void run() {
         isEnded = false;
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                view = new TetrisView(field, preview, eventQueue);
-                view.run();
-            }
-        });
+        view = new TetrisView(field, preview, eventQueue);
+        view.run();
 
         while (!isEnded) {
             if (eventQueue.hasEvent()) {
@@ -75,14 +70,10 @@ public class TetrisController {
 
     public void makeStep() {
         if (!fieldAdapter.move(0, 1)) {
-            int count = 0;
             for (int i = 0; i < field.getWidth(); i++) {
                 if (field.getPointAt(i, 0).getType() != null) {
-                    count++;
+                    isEnded = true;
                 }
-            }
-            if (count == field.getWidth()) {
-                return;
             }
             field.clearFilledRows();
             currentBlock = nextBlock;

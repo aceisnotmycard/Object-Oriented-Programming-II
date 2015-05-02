@@ -11,7 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 
-public class TetrisView extends JFrame implements ActionListener {
+public class TetrisView extends JFrame implements ActionListener, Runnable {
     private FieldView fieldView;
     private FieldView previewView;
     private EventQueue eventQueue;
@@ -37,13 +37,15 @@ public class TetrisView extends JFrame implements ActionListener {
         setSize(300, 440);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setFocusable(true);
+        setLocationRelativeTo(null);
+        setVisible(true);
+
         timer = new Timer(400, this);
         addKeyListener(new TetrisInputHandler(eventQueue));
     }
 
+    @Override
     public void run() {
-        setLocationRelativeTo(null);
-        setVisible(true);
         timer.start();
     }
 
