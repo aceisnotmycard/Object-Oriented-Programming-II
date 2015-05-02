@@ -29,6 +29,7 @@ public class BlockAdapter {
 
     public void setBlock(Block block) {
         this.block = block;
+        placeBlockAt(centerX, centerY);
     }
 
     public void rotateLeft() {
@@ -40,10 +41,6 @@ public class BlockAdapter {
         }
         block.setPattern(newPattern);
         if (checkCollisionsAt(centerX, centerY)) {
-            for (Point point : points) {
-                point.setType(null);
-            }
-            field.updatePoints(points);
             placeBlockAt(centerX, centerY);
         } else {
             block.setPattern(oldPattern);
@@ -59,10 +56,6 @@ public class BlockAdapter {
         }
         block.setPattern(newPattern);
         if (checkCollisionsAt(centerX, centerY)) {
-            for (Point point : points) {
-                point.setType(null);
-            }
-            field.updatePoints(points);
             placeBlockAt(centerX, centerY);
         } else {
             block.setPattern(oldPattern);
@@ -78,10 +71,6 @@ public class BlockAdapter {
         int newY = centerY + dy;
         System.out.println("Move block: (" + newX + ", " + newY + ")");
         if (checkCollisionsAt(newX, newY)) {
-            for (Point point : points) {
-                point.setType(null);
-            }
-            field.updatePoints(points);
             placeBlockAt(newX, newY);
             return true;
         } else {
@@ -106,6 +95,12 @@ public class BlockAdapter {
     }
 
     private void placeBlockAt(int x, int y) {
+        if (points != null) {
+            for (Point point : points) {
+                point.setType(null);
+            }
+            field.updatePoints(points);
+        }
         points = new ArrayList<>();
         for (int[] point : block.getPattern()) {
             points.add(new Point(x + point[0], y + point[1], block.getClass()));

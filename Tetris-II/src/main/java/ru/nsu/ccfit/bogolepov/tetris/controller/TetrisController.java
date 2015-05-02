@@ -73,10 +73,6 @@ public class TetrisController {
         }
     }
 
-    public Field getField() {
-        return field;
-    }
-
     public void makeStep() {
         if (!fieldAdapter.move(0, 1)) {
             int count = 0;
@@ -92,7 +88,7 @@ public class TetrisController {
             currentBlock = nextBlock;
             fieldAdapter = new BlockAdapter(currentBlock, field, field.getWidth() / 2, 0);
             nextBlock = factory.createRandomBlock();
-            previewAdapter = new BlockAdapter(nextBlock, preview, preview.getWidth() / 2, 0);
+            previewAdapter.setBlock(nextBlock);
         }
     }
 
