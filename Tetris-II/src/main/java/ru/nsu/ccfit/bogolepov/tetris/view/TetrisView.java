@@ -21,13 +21,20 @@ public class TetrisView extends JFrame implements ActionListener {
         this.eventQueue = eventQueue;
 
         fieldView = new FieldView(field);
+        fieldView.setSize(200, 440);
         field.addObserver(new FieldObserver(fieldView));
 
         previewView = new FieldView(preview);
+        previewView.setSize(100, 100);
         preview.addObserver(new FieldObserver(previewView));
-        add(previewView);
-        add(fieldView);
-        setSize(200, 440);
+
+        JPanel gamePanel = new JPanel();
+        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.LINE_AXIS));
+
+        gamePanel.add(fieldView);
+        gamePanel.add(previewView);
+        add(gamePanel);
+        setSize(300, 440);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setFocusable(true);
         timer = new Timer(400, this);
