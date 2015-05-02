@@ -4,11 +4,11 @@ import ru.nsu.ccfit.bogolepov.tetris.model.Block;
 import ru.nsu.ccfit.bogolepov.tetris.model.BlockAdapter;
 import ru.nsu.ccfit.bogolepov.tetris.model.BlockFactory;
 import ru.nsu.ccfit.bogolepov.tetris.model.Field;
-import view.TetrisView;
+import ru.nsu.ccfit.bogolepov.tetris.view.TetrisView;
 
-/**
- * Created by aceisnotmycard on 4/28/15.
- */
+import javax.swing.*;
+
+
 public class TetrisController {
 
     Field field;
@@ -18,6 +18,7 @@ public class TetrisController {
     Block nextBlock;
     BlockAdapter fieldAdapter;
     BlockAdapter previewAdapter;
+    TetrisView view;
 
     public TetrisController(int width, int height) {
         field = new Field(width, height);
@@ -30,11 +31,34 @@ public class TetrisController {
     }
 
     public void run() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                view = new TetrisView(field);
+                view.run();
+            }
+        });
+    }
+
+    public Field getField() {
+        return field;
     }
 
     public void makeStep() {
         if (!fieldAdapter.move(0, 1)) {
-
+            int count = 0;
+            for (int i = 0; i < field.getWidth(); i++) {
+                if (field.getPointAt(i, 0).getType() != null) {
+                    count++;
+                }
+            }
+            if (count == field.getWidth()) {
+                return;
+            }
+            field.clearFilledRows();
+            currentBlock = nextBlock;
+            fieldAdapter = new BlockAdapter(currentBlock, field, field.getWidth() / 2, 0);
+            nextBlock = factory.createRandomBlock();
         }
     }
 
@@ -47,14 +71,14 @@ public class TetrisController {
     }
 
     public void fallBlock() {
-        fieldAdapter.rotateLeft();
+        fieldAdapter.fall();
     }
 
     public void rotatePieceLeft() {
-        fieldAdapter.rotateRight();
+        fieldAdapter.rotateLeft();
     }
 
     public void rotatePieceRight() {
-        //currentBlock.rotateRight();
+        fieldAdapter.rotateRight();
     }
 }

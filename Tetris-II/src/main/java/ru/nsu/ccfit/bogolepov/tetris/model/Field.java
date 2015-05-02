@@ -7,10 +7,10 @@ import java.util.Observable;
  *
  */
 public class Field extends Observable {
-    int width;
-    int height;
+    private int width;
+    private int height;
 
-    Point[][] field;
+    private Point[][] field;
 
     public Field(int width, int height) {
         this.width = width;
@@ -52,6 +52,7 @@ public class Field extends Observable {
         for (Point point : pointsList) {
             field[point.getX()][point.getY()] = point;
         }
+        System.out.println("Field updated!");
         setChanged();
         notifyObservers();
         return false;

@@ -1,4 +1,4 @@
-package view;
+package ru.nsu.ccfit.bogolepov.tetris.view;
 
 import ru.nsu.ccfit.bogolepov.tetris.model.block.*;
 
@@ -22,7 +22,7 @@ public class GameView extends JPanel {
     int fieldHeight;
     int fieldWidth;
 
-    GameView(int width, int height) {
+    public GameView(int width, int height) {
         fieldHeight = height;
         fieldWidth = width;
     }

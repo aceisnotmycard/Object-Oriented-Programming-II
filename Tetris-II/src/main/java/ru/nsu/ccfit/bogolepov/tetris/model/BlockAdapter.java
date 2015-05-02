@@ -61,9 +61,14 @@ public class BlockAdapter {
         }
     }
 
+    public void fall() {
+        while(move(0,1));
+    }
+
     public boolean move(int dx, int dy) {
         int newX = centerX + dx;
         int newY = centerY + dy;
+        System.out.println("Move block: (" + newX + ", " + newY + ")");
         if (checkCollisionsAt(newX, newY)) {
             for (Point point : points) {
                 point.setType(null);
@@ -80,10 +85,12 @@ public class BlockAdapter {
     private boolean checkCollisionsAt(int x, int y) {
 
         for (int[] point : block.getPattern()) {
-            if (!field.isFineX(x + point[0]) || !field.isFineY(y + point[1])) {
+            int checkingX = x + point[0];
+            int checkingY = y + point[1];
+            if (!field.isFineX(checkingX) || !field.isFineY(checkingY)) {
                 return false;
             }
-            if (field.getPointAt(x + point[0], y + point[1]).getType() != null) {
+            if (!isPointBelongsToMe(checkingX, checkingY) && field.getPointAt(checkingX, checkingY).getType() != null) {
                 return false;
             }
         }
@@ -91,10 +98,21 @@ public class BlockAdapter {
     }
 
     private void placeBlockAt(int x, int y) {
-        points = new ArrayList<Point>();
+        points = new ArrayList<>();
         for (int[] point : block.getPattern()) {
             points.add(new Point(x + point[0], y + point[1], block.getClass()));
         }
+        centerX = x;
+        centerY = y;
         field.updatePoints(points);
+    }
+
+    private boolean isPointBelongsToMe(int x, int y) {
+        for (Point p : points) {
+            if (p.getX() == x && p.getY() == y) {
+                return true;
+            }
+        }
+        return false;
     }
 }

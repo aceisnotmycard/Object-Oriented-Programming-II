@@ -24,7 +24,7 @@ public class Point {
         this.type = type;
     }
 
-    Class<?> getType() {
+    public Class<?> getType() {
         return type;
     }
 

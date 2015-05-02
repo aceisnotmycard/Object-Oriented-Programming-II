@@ -1,18 +1,15 @@
-package view;
+package ru.nsu.ccfit.bogolepov.tetris.view;
 
 import ru.nsu.ccfit.bogolepov.tetris.model.Field;
 
 import java.awt.*;
 
-/**
- * Created by aceisnotmycard on 5/1/15.
- */
 public class FieldView extends GameView {
 
     private Field field;
 
-    public FieldView(int width, int height, Field field) {
-        super(width, height);
+    public FieldView(Field field) {
+        super(field.getWidth(), field.getHeight());
         this.field = field;
     }
 
@@ -26,7 +23,7 @@ public class FieldView extends GameView {
 
         for (int i = 0; i < fieldHeight; i++) {
             for (int j = 0; j < fieldWidth; j++) {
-                drawSquare(g, j, i, field.getPointAt(j, i).getClass(), boardTop);
+                drawSquare(g, j, i, field.getPointAt(j, i).getType(), boardTop);
             }
         }
     }
