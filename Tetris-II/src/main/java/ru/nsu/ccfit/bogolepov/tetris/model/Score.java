@@ -26,6 +26,7 @@ public class Score extends Observable {
         return score;
     }
 
+    /** writes score to records file if it's really a new record */
     public void saveIfBest() {
         int positionToReplace = -1;
         List<Integer> recordsList = getBestResults();

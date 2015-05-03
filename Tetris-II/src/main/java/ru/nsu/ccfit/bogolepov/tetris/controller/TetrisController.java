@@ -35,7 +35,8 @@ public class TetrisController {
     public void run() {
         isEnded = false;
         view = new TetrisView(field, preview, score, eventQueue);
-        view.run();
+        Thread thread = new Thread(view);
+        thread.start();
 
         while (!isEnded) {
             if (eventQueue.hasEvent()) {
@@ -62,6 +63,7 @@ public class TetrisController {
                 }
             }
         }
+
     }
 
     public void makeStep() {
