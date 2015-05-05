@@ -6,15 +6,15 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * Created by aceisnotmycard on 5/2/15.
  */
-public class EventQueue {
+public class EventQueue<T> {
 
-    private Queue<Event> eventQueue;
+    private Queue<T> eventQueue;
 
     public EventQueue() {
         eventQueue = new ConcurrentLinkedQueue<>();
     }
 
-    public void addEvent(Event event) {
+    public void addEvent(T event) {
         eventQueue.add(event);
     }
 
@@ -22,7 +22,7 @@ public class EventQueue {
         return !eventQueue.isEmpty();
     }
 
-    public Event getEvent() {
+    public T getEvent() {
         return eventQueue.poll();
     }
 }

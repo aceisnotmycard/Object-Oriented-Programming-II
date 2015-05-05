@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.bogolepov.tetris.view;
 
-import ru.nsu.ccfit.bogolepov.tetris.event.Event;
+import ru.nsu.ccfit.bogolepov.tetris.event.TetrisEvent;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
 import ru.nsu.ccfit.bogolepov.tetris.model.Field;
 import ru.nsu.ccfit.bogolepov.tetris.model.Score;
@@ -11,10 +11,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TetrisView extends JFrame implements ActionListener, Runnable {
-    private EventQueue eventQueue;
+    private EventQueue<TetrisEvent> eventQueue;
     private Timer timer;
 
-    public TetrisView(Field field, Field preview, Score score, EventQueue eventQueue) {
+    public TetrisView(Field field, Field preview, Score score, EventQueue<TetrisEvent> eventQueue) {
+
+        timer = new Timer(400, this);
+        this.eventQueue = eventQueue;
+        addKeyListener(new TetrisInputHandler(eventQueue));
+
         FieldView fieldView = new FieldView(field);
         fieldView.setPreferredSize(new Dimension(200, 440));
         FieldView previewView = new FieldView(preview);
@@ -47,10 +52,6 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
-
-        timer = new Timer(400, this);
-        this.eventQueue = eventQueue;
-        addKeyListener(new TetrisInputHandler(eventQueue));
     }
 
     @Override
@@ -60,6 +61,6 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        eventQueue.addEvent(Event.GAME_STEP);
+        eventQueue.addEvent(TetrisEvent.GAME_STEP);
     }
 }

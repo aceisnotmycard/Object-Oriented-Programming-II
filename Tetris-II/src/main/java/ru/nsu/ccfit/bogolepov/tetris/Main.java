@@ -1,13 +1,11 @@
 package ru.nsu.ccfit.bogolepov.tetris;
 
-import ru.nsu.ccfit.bogolepov.tetris.controller.TetrisController;
+import ru.nsu.ccfit.bogolepov.tetris.controller.MenuController;
+import ru.nsu.ccfit.bogolepov.tetris.menu.MenuView;
 
-/**
- * Created by aceisnotmycard on 5/1/15.
- */
 public class Main {
     public static void main(String[] args) {
-        TetrisController controller = new TetrisController(10, 22);
+        MenuController controller = new MenuController();
         controller.run();
     }
 }

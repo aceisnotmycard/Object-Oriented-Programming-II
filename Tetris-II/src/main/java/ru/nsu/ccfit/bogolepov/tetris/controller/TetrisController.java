@@ -1,11 +1,13 @@
 package ru.nsu.ccfit.bogolepov.tetris.controller;
 
-import ru.nsu.ccfit.bogolepov.tetris.event.Event;
+import ru.nsu.ccfit.bogolepov.tetris.event.TetrisEvent;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
 import ru.nsu.ccfit.bogolepov.tetris.model.*;
 import ru.nsu.ccfit.bogolepov.tetris.view.TetrisView;
 
-public class TetrisController {
+import javax.swing.*;
+
+public class TetrisController implements Runnable{
 
     private Field field;
     private Field preview;
@@ -15,7 +17,7 @@ public class TetrisController {
     private BlockAdapter fieldAdapter;
     private BlockAdapter previewAdapter;
     private TetrisView view;
-    private EventQueue eventQueue;
+    private EventQueue<TetrisEvent> eventQueue;
     private Score score;
 
     private boolean isEnded;
@@ -29,19 +31,21 @@ public class TetrisController {
         nextBlock = factory.createRandomBlock();
         fieldAdapter = new BlockAdapter(currentBlock, field, field.getWidth() / 2, 0);
         previewAdapter = new BlockAdapter(nextBlock, preview, preview.getWidth() / 2, 0);
-        eventQueue = new EventQueue();
+        eventQueue = new EventQueue<>();
     }
 
     public void run() {
         isEnded = false;
         view = new TetrisView(field, preview, score, eventQueue);
+        System.out.println("View is ready");
         Thread thread = new Thread(view);
-        thread.start();
+        thread.run();
 
         while (!isEnded) {
             if (eventQueue.hasEvent()) {
-                Event event  = eventQueue.getEvent();
-                switch (event) {
+                TetrisEvent tetrisEvent = eventQueue.getEvent();
+                System.out.println("event!");
+                switch (tetrisEvent) {
                     case MOVE_LEFT:
                         moveBlockLeft();
                         break;
@@ -71,6 +75,8 @@ public class TetrisController {
             for (int i = 0; i < field.getWidth(); i++) {
                 if (field.getPointAt(i, 0).getType() != null) {
                     isEnded = true;
+
+                    score.saveIfBest();
                 }
             }
             score.add(field.clearFilledRows());
