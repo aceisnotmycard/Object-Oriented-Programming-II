@@ -16,8 +16,9 @@ public class MenuController {
 
     public void run() {
         isRunning = true;
-        Thread thread = new Thread(new MenuView(eventQueue));
-        thread.run();
+//        Thread thread = new Thread(new MenuView(eventQueue));
+//        thread.run();
+        (new MenuView(eventQueue)).run();
         while (isRunning) {
             MenuEvent event = eventQueue.getEvent();
             if (event != null) {

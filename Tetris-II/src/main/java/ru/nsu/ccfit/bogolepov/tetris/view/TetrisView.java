@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TetrisView extends JFrame implements ActionListener, Runnable {
     private EventQueue<TetrisEvent> eventQueue;
@@ -45,6 +47,14 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
         backPanel.add(previewPanel);
         backPanel.add(pointsPanel);
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                super.windowClosed(e);
+                eventQueue.addEvent(TetrisEvent.GAME_CLOSED);
+            }
+        });
+
         add(gamePanel, BorderLayout.CENTER);
         add(backPanel, BorderLayout.EAST);
         setDefaultCloseOperation(endGame());
@@ -52,6 +62,7 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
+
     }
 
     @Override
@@ -64,8 +75,8 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
         eventQueue.addEvent(TetrisEvent.GAME_STEP);
     }
 
+
     private int endGame() {
-        //eventQueue.addEvent(TetrisEvent.GAME_CLOSED);
         return DISPOSE_ON_CLOSE;
     }
 }

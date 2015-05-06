@@ -38,8 +38,9 @@ public class TetrisController implements Runnable{
     public void run() {
         isEnded = false;
         view = new TetrisView(field, preview, score, eventQueue);
-        viewThread = new Thread(view);
-        viewThread.run();
+//        viewThread = new Thread(view);
+//        viewThread.run();
+        view.run();
 
         while (!isEnded) {
             if (eventQueue.hasEvent()) {
@@ -90,7 +91,6 @@ public class TetrisController implements Runnable{
 
     private void endGame() {
         isEnded = true;
-        viewThread.interrupt();
         Score.save(score.get());
     }
 

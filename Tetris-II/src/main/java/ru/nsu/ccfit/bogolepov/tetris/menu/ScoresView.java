@@ -16,7 +16,7 @@ public class ScoresView extends JFrame {
         JTextArea textArea = new JTextArea();
         int numberOfShowingRecords = NUMBER_OF_RECORDS < scoreArrayList.size() ? NUMBER_OF_RECORDS : scoreArrayList.size();
         for (Integer i = 1; i <= numberOfShowingRecords; i++) {
-            textArea.append(i.toString() + ": " + scoreArrayList.get(i-1) + "\n");
+            textArea.append(i.toString() + ": " + scoreArrayList.get(scoreArrayList.size()-i) + "\n");
         }
 
         add(textArea);
