@@ -38,8 +38,6 @@ public class TetrisController implements Runnable{
     public void run() {
         isEnded = false;
         view = new TetrisView(field, preview, score, eventQueue);
-//        viewThread = new Thread(view);
-//        viewThread.run();
         view.run();
 
         while (!isEnded) {
