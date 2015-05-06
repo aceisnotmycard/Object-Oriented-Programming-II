@@ -8,9 +8,9 @@ import java.awt.event.KeyEvent;
 
 public class TetrisInputHandler extends KeyAdapter {
 
-    EventQueue eventQueue;
+    EventQueue<TetrisEvent> eventQueue;
 
-    public TetrisInputHandler(EventQueue eventQueue) {
+    public TetrisInputHandler(EventQueue<TetrisEvent> eventQueue) {
         this.eventQueue = eventQueue;
     }
 

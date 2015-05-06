@@ -19,6 +19,7 @@ public class TetrisController implements Runnable{
     private TetrisView view;
     private EventQueue<TetrisEvent> eventQueue;
     private Score score;
+    private Thread viewThread;
 
     private boolean isEnded;
 
@@ -37,14 +38,12 @@ public class TetrisController implements Runnable{
     public void run() {
         isEnded = false;
         view = new TetrisView(field, preview, score, eventQueue);
-        System.out.println("View is ready");
-        Thread thread = new Thread(view);
-        thread.run();
+        viewThread = new Thread(view);
+        viewThread.run();
 
         while (!isEnded) {
             if (eventQueue.hasEvent()) {
                 TetrisEvent tetrisEvent = eventQueue.getEvent();
-                System.out.println("event!");
                 switch (tetrisEvent) {
                     case MOVE_LEFT:
                         moveBlockLeft();
@@ -64,6 +63,9 @@ public class TetrisController implements Runnable{
                     case GAME_STEP:
                         makeStep();
                         break;
+                    case GAME_CLOSED:
+                        endGame();
+                        break;
                 }
             }
         }
@@ -74,9 +76,8 @@ public class TetrisController implements Runnable{
         if (!fieldAdapter.move(0, 1)) {
             for (int i = 0; i < field.getWidth(); i++) {
                 if (field.getPointAt(i, 0).getType() != null) {
-                    isEnded = true;
-
-                    score.saveIfBest();
+                    endGame();
+                    return;
                 }
             }
             score.add(field.clearFilledRows());
@@ -85,6 +86,12 @@ public class TetrisController implements Runnable{
             nextBlock = factory.createRandomBlock();
             previewAdapter.setBlock(nextBlock);
         }
+    }
+
+    private void endGame() {
+        isEnded = true;
+        viewThread.interrupt();
+        Score.save(score.get());
     }
 
     public void moveBlockLeft() {

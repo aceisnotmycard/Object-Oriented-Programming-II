@@ -1,6 +1,10 @@
 package ru.nsu.ccfit.bogolepov.tetris.model;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -8,6 +12,17 @@ import java.util.Observable;
 public class Score extends Observable {
 
     private static final String RECORDS_FILE = "records.txt";
+
+    static {
+        File recordsFile = new File(RECORDS_FILE);
+        if (!recordsFile.exists()) {
+            try {
+                recordsFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     Integer score;
 
@@ -27,49 +42,35 @@ public class Score extends Observable {
     }
 
     /** writes score to records file if it's really a new record */
-    public void saveIfBest() {
-        int positionToReplace = -1;
-        List<Integer> recordsList = getBestResults();
-        for (int i = 0; i < recordsList.size(); i++) {
-            if (score > recordsList.get(i)) {
-                positionToReplace = i;
-            }
+    public static void save(Integer score) {
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(RECORDS_FILE, true)))) {
+            out.println(score);
+        }catch (IOException e) {
+           e.printStackTrace();
         }
-        if (positionToReplace > -1) {
-            for (int i = positionToReplace; i < recordsList.size() - 1; i++) {
-                recordsList.set(i + 1, recordsList.get(i));
-            }
-            recordsList.set(positionToReplace, score);
-        }
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter(
-                    new File(this.getClass().getResource(RECORDS_FILE).getPath()));
-        } catch (FileNotFoundException e) {
-            writer = null;
-        }
-        if (writer != null) {
-            for (Integer record : recordsList) {
-                writer.write(record + "\n");
-            }
-        }
-
     }
 
-    public List<Integer> getBestResults() {
+    public static List<Integer> getResults() {
         ArrayList<Integer> recordsList = new ArrayList<>();
-        InputStream stream = getClass().getClassLoader().getResourceAsStream(RECORDS_FILE);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String line;
         try {
+            InputStream stream = new FileInputStream(RECORDS_FILE);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
             while ((line = reader.readLine()) != null) {
                 if (line.length() > 0) {
                     recordsList.add(new Integer(line));
                 }
             }
+            try {
+                reader.close();
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         recordsList.sort(Integer::compareTo);
         return recordsList;
     }

@@ -4,11 +4,7 @@ import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
 import ru.nsu.ccfit.bogolepov.tetris.event.MenuEvent;
 import ru.nsu.ccfit.bogolepov.tetris.menu.MenuView;
 
-import javax.swing.*;
 
-/**
- * Created by aceisnotmycard on 5/5/15.
- */
 public class MenuController {
 
     EventQueue<MenuEvent> eventQueue;
@@ -29,6 +25,7 @@ public class MenuController {
                     case RUN_GAME:
                         TetrisController controller = new TetrisController(10, 22);
                         controller.run();
+
                 }
             }
         }

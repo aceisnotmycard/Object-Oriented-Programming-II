@@ -47,7 +47,7 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
 
         add(gamePanel, BorderLayout.CENTER);
         add(backPanel, BorderLayout.EAST);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(endGame());
         setFocusable(true);
         setLocationRelativeTo(null);
         pack();
@@ -62,5 +62,10 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
     @Override
     public void actionPerformed(ActionEvent e) {
         eventQueue.addEvent(TetrisEvent.GAME_STEP);
+    }
+
+    private int endGame() {
+        //eventQueue.addEvent(TetrisEvent.GAME_CLOSED);
+        return DISPOSE_ON_CLOSE;
     }
 }

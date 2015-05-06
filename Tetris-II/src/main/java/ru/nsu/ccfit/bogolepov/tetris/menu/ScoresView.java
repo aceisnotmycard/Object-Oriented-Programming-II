@@ -5,22 +5,18 @@ import ru.nsu.ccfit.bogolepov.tetris.model.Score;
 import javax.swing.*;
 import java.util.List;
 
-/**
- * Created by aceisnotmycard on 5/5/15.
- */
 public class ScoresView extends JFrame {
 
     List<Integer> scoreArrayList;
     private static final int NUMBER_OF_RECORDS = 5;
 
     ScoresView() {
-        Score score = new Score();
-        scoreArrayList = score.getBestResults();
+        scoreArrayList = Score.getResults();
 
         JTextArea textArea = new JTextArea();
         int numberOfShowingRecords = NUMBER_OF_RECORDS < scoreArrayList.size() ? NUMBER_OF_RECORDS : scoreArrayList.size();
-        for (Integer i = 0; i < numberOfShowingRecords; i++) {
-            textArea.append(i.toString() + ": " + scoreArrayList.get(i) + "\n");
+        for (Integer i = 1; i <= numberOfShowingRecords; i++) {
+            textArea.append(i.toString() + ": " + scoreArrayList.get(i-1) + "\n");
         }
 
         add(textArea);
