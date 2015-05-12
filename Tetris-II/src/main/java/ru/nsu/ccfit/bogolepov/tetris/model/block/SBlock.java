@@ -2,9 +2,7 @@ package ru.nsu.ccfit.bogolepov.tetris.model.block;
 
 import ru.nsu.ccfit.bogolepov.tetris.model.Block;
 
-/**
- * Created by aceisnotmycard on 5/1/15.
- */
+
 public class SBlock implements Block {
 
     int[][] pattern = {

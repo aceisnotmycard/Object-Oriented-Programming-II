@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.bogolepov.tetris.view;
+package ru.nsu.ccfit.bogolepov.tetris.gameview;
 
 import ru.nsu.ccfit.bogolepov.tetris.event.TetrisEvent;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
@@ -33,8 +33,8 @@ public class TetrisInputHandler extends KeyAdapter {
             case KeyEvent.VK_SPACE:
                 eventQueue.addEvent(TetrisEvent.FALL);
                 break;
-            case KeyEvent.VK_P:
-                break;
+//            case KeyEvent.VK_P:
+//                break;
         }
     }
 }

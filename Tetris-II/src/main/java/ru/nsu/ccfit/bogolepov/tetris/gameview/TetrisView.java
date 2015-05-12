@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.bogolepov.tetris.view;
+package ru.nsu.ccfit.bogolepov.tetris.gameview;
 
 import ru.nsu.ccfit.bogolepov.tetris.event.TetrisEvent;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class TetrisView extends JFrame implements ActionListener, Runnable {
+public class TetrisView extends JFrame implements ActionListener {
     private EventQueue<TetrisEvent> eventQueue;
     private Timer timer;
 
@@ -57,7 +57,7 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
 
         add(gamePanel, BorderLayout.CENTER);
         add(backPanel, BorderLayout.EAST);
-        setDefaultCloseOperation(endGame());
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setFocusable(true);
         setLocationRelativeTo(null);
         pack();
@@ -65,7 +65,6 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
 
     }
 
-    @Override
     public void run() {
         timer.start();
     }
@@ -73,10 +72,5 @@ public class TetrisView extends JFrame implements ActionListener, Runnable {
     @Override
     public void actionPerformed(ActionEvent e) {
         eventQueue.addEvent(TetrisEvent.GAME_STEP);
-    }
-
-
-    private int endGame() {
-        return DISPOSE_ON_CLOSE;
     }
 }

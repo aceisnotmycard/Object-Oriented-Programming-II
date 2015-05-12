@@ -6,7 +6,7 @@ import ru.nsu.ccfit.bogolepov.tetris.event.MenuEvent;
 
 import javax.swing.*;
 
-public class MenuView extends JFrame implements Runnable {
+public class MenuView extends JFrame {
     JButton newGameButton;
     JButton aboutButton;
     JButton scoresButton;
@@ -52,7 +52,6 @@ public class MenuView extends JFrame implements Runnable {
 
     }
 
-    @Override
     public void run() {
         setVisible(true);
     }

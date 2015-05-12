@@ -3,9 +3,7 @@ package ru.nsu.ccfit.bogolepov.tetris.controller;
 import ru.nsu.ccfit.bogolepov.tetris.event.TetrisEvent;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
 import ru.nsu.ccfit.bogolepov.tetris.model.*;
-import ru.nsu.ccfit.bogolepov.tetris.view.TetrisView;
-
-import javax.swing.*;
+import ru.nsu.ccfit.bogolepov.tetris.gameview.TetrisView;
 
 public class TetrisController implements Runnable{
 

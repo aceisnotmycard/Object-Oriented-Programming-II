@@ -3,9 +3,7 @@ package ru.nsu.ccfit.bogolepov.tetris.event;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/**
- * Created by aceisnotmycard on 5/2/15.
- */
+
 public class EventQueue<T> {
 
     private Queue<T> eventQueue;

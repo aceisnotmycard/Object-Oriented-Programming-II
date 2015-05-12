@@ -1,5 +1,7 @@
 package ru.nsu.ccfit.bogolepov.tetris.model;
 
+import ru.nsu.ccfit.bogolepov.tetris.model.block.CubeBlock;
+
 import java.util.ArrayList;
 
 public class BlockAdapter {
@@ -29,6 +31,11 @@ public class BlockAdapter {
     }
 
     public void rotateLeft() {
+
+        if (block.getClass() == CubeBlock.class) {
+            return;
+        }
+
         int[][] newPattern = new int[getBlock().getSize()][2];
         int[][] oldPattern = getBlock().getPattern().clone();
         for (int i = 0; i < getBlock().getSize(); i++) {
@@ -44,6 +51,11 @@ public class BlockAdapter {
     }
 
     public void rotateRight() {
+
+        if (block.getClass() == CubeBlock.class) {
+            return;
+        }
+
         int[][] newPattern = new int[getBlock().getSize()][2];
         int[][] oldPattern = getBlock().getPattern().clone();
         for (int i = 0; i < getBlock().getSize(); i++) {

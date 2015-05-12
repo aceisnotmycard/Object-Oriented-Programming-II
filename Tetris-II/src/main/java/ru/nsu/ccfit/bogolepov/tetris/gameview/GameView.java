@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.bogolepov.tetris.view;
+package ru.nsu.ccfit.bogolepov.tetris.gameview;
 
 import ru.nsu.ccfit.bogolepov.tetris.model.block.*;
 

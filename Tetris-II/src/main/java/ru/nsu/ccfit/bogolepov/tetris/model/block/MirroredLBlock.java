@@ -7,7 +7,7 @@ import ru.nsu.ccfit.bogolepov.tetris.model.Block;
  */
 public class MirroredLBlock implements Block {
 
-    int[][] pattern = {
+    private int[][] pattern = {
             {-1, 0}, {0, 0}, {1, 0}, {1, 1}
     };
 
