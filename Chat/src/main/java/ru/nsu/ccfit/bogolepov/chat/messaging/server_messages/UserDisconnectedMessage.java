@@ -3,8 +3,10 @@ package ru.nsu.ccfit.bogolepov.chat.messaging.server_messages;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ClientContext;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ServerMessage;
 
+import java.io.Serializable;
 
-public class UserDisconnectedMessage implements ServerMessage {
+
+public class UserDisconnectedMessage implements ServerMessage, Serializable {
 
     private String user;
 

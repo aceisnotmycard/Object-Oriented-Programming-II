@@ -5,9 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by aceisnotmycard on 5/26/15.
- */
 public class ClientView extends JFrame {
 
     private JTextArea messageHistoryArea;
@@ -15,8 +12,12 @@ public class ClientView extends JFrame {
     private Client client;
 
     ClientView(Client client) {
+
+        client.setUsername(JOptionPane.showInputDialog(this, "Username:"));
+
         this.client = client;
         messageHistoryArea = new JTextArea(80, 80);
+
         JPanel centerPanel = new JPanel(new GridLayout(1, 1));
         centerPanel.add(new JScrollPane(messageHistoryArea));
         messageHistoryArea.setEditable(false);
@@ -37,7 +38,7 @@ public class ClientView extends JFrame {
     }
 
     void appendMessage(String text) {
-        messageHistoryArea.append(text);
+        messageHistoryArea.append(text + "\n");
         messageHistoryArea.setCaretPosition(messageHistoryArea.getText().length() - 1);
     }
 }

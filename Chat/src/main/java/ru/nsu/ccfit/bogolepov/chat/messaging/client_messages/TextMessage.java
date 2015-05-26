@@ -4,12 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ClientMessage;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ServerContext;
+import ru.nsu.ccfit.bogolepov.chat.messaging.server_messages.ServerTextMessage;
 
 import java.io.Serializable;
 
 public class TextMessage implements ClientMessage, Serializable {
-
-    transient Logger logger = LogManager.getLogger(getClass());
 
     private String text;
 
@@ -20,6 +19,5 @@ public class TextMessage implements ClientMessage, Serializable {
     @Override
     public void exec(ServerContext context) {
         context.broadcast(text);
-        //logger.info("broadcasting message...");
     }
 }

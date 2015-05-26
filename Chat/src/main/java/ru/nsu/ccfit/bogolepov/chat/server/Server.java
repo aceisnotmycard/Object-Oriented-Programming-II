@@ -2,6 +2,7 @@ package ru.nsu.ccfit.bogolepov.chat.server;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -33,13 +34,13 @@ public class Server {
                 rh.start();
             }
         } catch (IOException e) {
-
         }
     }
 
-    public void broadcast(String message) {
+    public boolean broadcast(Message message) {
         logger.trace("Server::broadcast");
         requestHandlerList.forEach(rh -> rh.sendMessage(message));
+        return true;
     }
 
     public List<String> getUsernames() {

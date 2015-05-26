@@ -3,9 +3,9 @@ package ru.nsu.ccfit.bogolepov.chat.server;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ClientMessage;
+import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
 import ru.nsu.ccfit.bogolepov.chat.messaging.serializable.SerializableReceiver;
 import ru.nsu.ccfit.bogolepov.chat.messaging.serializable.SerializableTransmitter;
-import ru.nsu.ccfit.bogolepov.chat.messaging.server_messages.ServerTextMessage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,21 +21,26 @@ public class RequestHandler extends Thread {
     private SerializableReceiver receiver;
     private ClientMessage message;
 
+    private ObjectInputStream inputStream;
+    private ObjectOutputStream outputStream;
+
     private boolean isServing;
 
     public RequestHandler(Socket socket, Server server) {
-        context = new RequestHandlerContext(server);
+        context = new RequestHandlerContext(server, transmitter);
         try {
-            transmitter = new SerializableTransmitter(new ObjectOutputStream(socket.getOutputStream()));
-            receiver = new SerializableReceiver(new ObjectInputStream(socket.getInputStream()));
+            outputStream = new ObjectOutputStream(socket.getOutputStream());
+            inputStream = new ObjectInputStream(socket.getInputStream());
+            transmitter = new SerializableTransmitter(outputStream);
+            receiver = new SerializableReceiver(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public Void sendMessage(String message) {
+    public Void sendMessage(Message message) {
         logger.trace(getClass().getSimpleName() + "::sendMessage");
-        transmitter.send(new ServerTextMessage(message));
+        transmitter.send(message);
         return null;
     }
 
@@ -59,6 +64,27 @@ public class RequestHandler extends Thread {
                 }
             } catch (ClassNotFoundException e) {
                 logger.warn(e.getMessage());
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+                break;
+            }
+        }
+        close();
+    }
+
+    public void close() {
+        if (outputStream != null) {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+            }
+        }
+        if (inputStream != null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                logger.error(e.getMessage());
             }
         }
     }

@@ -8,9 +8,6 @@ import ru.nsu.ccfit.bogolepov.chat.messaging.Receiver;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-/**
- * Created by aceisnotmycard on 5/26/15.
- */
 public class SerializableReceiver implements Receiver {
     Logger logger = LogManager.getLogger(getClass());
     ObjectInputStream inputStream;
@@ -19,15 +16,11 @@ public class SerializableReceiver implements Receiver {
         this.inputStream = stream;
     }
 
-    public Message receive() throws ClassNotFoundException {
-        Message message = null;
-        try{
-            message = (Message) inputStream.readObject();
-            if (message != null) {
-                logger.info("Message read successfully");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Message receive() throws ClassNotFoundException, IOException {
+        Message message;
+        message = (Message) inputStream.readObject();
+        if (message != null) {
+            logger.info("Message read successfully");
         }
         return message;
     }

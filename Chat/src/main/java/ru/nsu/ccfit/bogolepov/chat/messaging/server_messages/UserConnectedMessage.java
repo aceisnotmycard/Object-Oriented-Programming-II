@@ -3,10 +3,9 @@ package ru.nsu.ccfit.bogolepov.chat.messaging.server_messages;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ClientContext;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ServerMessage;
 
-/**
- * Created by aceisnotmycard on 5/26/15.
- */
-public class UserConnectedMessage implements ServerMessage {
+import java.io.Serializable;
+
+public class UserConnectedMessage implements ServerMessage, Serializable {
 
     private String user;
 

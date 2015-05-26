@@ -4,9 +4,6 @@ import ru.nsu.ccfit.bogolepov.chat.messaging.ClientContext;
 
 import java.util.List;
 
-/**
- * Created by aceisnotmycard on 5/26/15.
- */
 public class ServerListenerContext implements ClientContext {
 
     Client client;
@@ -17,7 +14,7 @@ public class ServerListenerContext implements ClientContext {
 
     @Override
     public void showError(String message) {
-
+        client.showMessage("ERROR: " + message);
     }
 
     @Override
@@ -27,16 +24,16 @@ public class ServerListenerContext implements ClientContext {
 
     @Override
     public void notifyUserConnected(String user) {
-
+        client.showMessage(user +  " connected");
     }
 
     @Override
     public void notifyUserDisconnected(String user) {
-
+        client.showMessage(user + " disconnected");
     }
 
     @Override
     public void updateUsersList(List<String> users) {
-
+        client.showUsers(users);
     }
 }

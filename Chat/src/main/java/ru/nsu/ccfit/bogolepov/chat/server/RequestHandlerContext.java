@@ -2,9 +2,10 @@ package ru.nsu.ccfit.bogolepov.chat.server;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ServerContext;
 import ru.nsu.ccfit.bogolepov.chat.messaging.Transmitter;
-import ru.nsu.ccfit.bogolepov.chat.messaging.server_messages.UsersListMessage;
+import ru.nsu.ccfit.bogolepov.chat.messaging.server_messages.*;
 
 import java.util.List;
 
@@ -22,30 +23,46 @@ public class RequestHandlerContext implements ServerContext {
     }
 
     @Override
-    public void broadcast(String message) {
+    public void broadcast(Message message) {
 
         logger.trace(getClass().getSimpleName() + "::broadcast");
-        server.broadcast(username + ": " + message);
+        if (!server.broadcast(message)) {
+            transmitter.send(new ErrorMessage("Cannot broadcast message to other users"));
+        }
     }
 
     @Override
     public void login(String username) {
         this.username = username;
+        if (!server.broadcast(new UserConnectedMessage(username))) {
+            transmitter.send(new ErrorMessage("Cannot login"));
+        }
     }
 
     @Override
     public void logout() {
-
+        if (!server.broadcast(new UserDisconnectedMessage(username))) {
+            transmitter.send(new ErrorMessage("Cannot disconnect, lol"));
+        }
     }
 
     @Override
     public void getUsers() {
         logger.trace(getClass().getSimpleName() + "::getUsers");
         List<String> usernames = server.getUsernames();
-        transmitter.send(new UsersListMessage(usernames));
+        if (usernames != null) {
+            transmitter.send(new UsersListMessage(usernames));
+        } else {
+            transmitter.send(new ErrorMessage("Cannot retrieve list of users"));
+        }
     }
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public void broadcast(String message) {
+        broadcast(new ServerTextMessage(username + ": " + message));
     }
 }
