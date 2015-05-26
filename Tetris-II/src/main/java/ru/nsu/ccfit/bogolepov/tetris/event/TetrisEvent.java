@@ -7,5 +7,6 @@ public enum TetrisEvent {
     ROTATE_RIGHT,
     FALL,
     GAME_STEP,
-    GAME_CLOSED
+    GAME_CLOSED,
+    NEW_GAME
 }

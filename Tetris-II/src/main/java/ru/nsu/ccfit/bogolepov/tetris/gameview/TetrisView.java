@@ -2,6 +2,8 @@ package ru.nsu.ccfit.bogolepov.tetris.gameview;
 
 import ru.nsu.ccfit.bogolepov.tetris.event.TetrisEvent;
 import ru.nsu.ccfit.bogolepov.tetris.event.EventQueue;
+import ru.nsu.ccfit.bogolepov.tetris.menuview.AboutView;
+import ru.nsu.ccfit.bogolepov.tetris.menuview.ScoresView;
 import ru.nsu.ccfit.bogolepov.tetris.model.Field;
 import ru.nsu.ccfit.bogolepov.tetris.model.Score;
 
@@ -22,6 +24,50 @@ public class TetrisView extends JFrame implements ActionListener {
         this.eventQueue = eventQueue;
         addKeyListener(new TetrisInputHandler(eventQueue));
 
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu menu = new JMenu("Menu");
+        menuBar.add(menu);
+
+        JMenuItem newGameMenuItem = new JMenuItem("New game");
+        newGameMenuItem.addActionListener(e -> {
+            new TetrisView(field, preview, score, eventQueue);
+
+        });
+        menu.add(newGameMenuItem);
+
+        JMenuItem scoresMenuItem = new JMenuItem("Scores");
+        scoresMenuItem.addActionListener(e -> new ScoresView());
+        menu.add(scoresMenuItem);
+
+        JMenuItem aboutMenuItem = new JMenuItem("About");
+        aboutMenuItem.addActionListener(e -> new AboutView());
+        menu.add(aboutMenuItem);
+
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        exitMenuItem.addActionListener(e -> System.exit(0));
+        menu.add(exitMenuItem);
+
+        setJMenuBar(menuBar);
+
+        createPanels(field, preview, score);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                super.windowClosed(e);
+                eventQueue.addEvent(TetrisEvent.GAME_CLOSED);
+            }
+        });
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setFocusable(true);
+        setLocationRelativeTo(null);
+        pack();
+        setVisible(true);
+
+    }
+
+    void createPanels(Field field, Field preview, Score score) {
         FieldView fieldView = new FieldView(field);
         fieldView.setPreferredSize(new Dimension(200, 440));
         FieldView previewView = new FieldView(preview);
@@ -47,22 +93,8 @@ public class TetrisView extends JFrame implements ActionListener {
         backPanel.add(previewPanel);
         backPanel.add(pointsPanel);
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                super.windowClosed(e);
-                eventQueue.addEvent(TetrisEvent.GAME_CLOSED);
-            }
-        });
-
         add(gamePanel, BorderLayout.CENTER);
         add(backPanel, BorderLayout.EAST);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setFocusable(true);
-        setLocationRelativeTo(null);
-        pack();
-        setVisible(true);
-
     }
 
     public void run() {

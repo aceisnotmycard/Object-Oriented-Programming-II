@@ -1,9 +1,9 @@
-package ru.nsu.ccfit.bogolepov.tetris.menu;
+package ru.nsu.ccfit.bogolepov.tetris.menuview;
 
 import javax.swing.*;
 
 public class AboutView extends JFrame {
-    AboutView() {
+    public AboutView() {
         JTextArea textArea = new JTextArea("Sergey Bogolepov, NSU, 2015");
         add(textArea);
         setSize(300, 150);

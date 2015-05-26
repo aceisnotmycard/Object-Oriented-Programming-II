@@ -7,6 +7,7 @@ import ru.nsu.ccfit.bogolepov.tetris.gameview.TetrisView;
 
 public class TetrisController implements Runnable{
 
+    private int width, height;
     private Field field;
     private Field preview;
     private BlockFactory factory;
@@ -17,11 +18,16 @@ public class TetrisController implements Runnable{
     private TetrisView view;
     private EventQueue<TetrisEvent> eventQueue;
     private Score score;
-    private Thread viewThread;
 
     private boolean isEnded;
 
     public TetrisController(int width, int height) {
+        this.width = width;
+        this.height = height;
+        createGame(width, height);
+    }
+
+    private void createGame(int width, int height) {
         score = new Score();
         field = new Field(width, height);
         preview = new Field(5, 5);
@@ -42,6 +48,9 @@ public class TetrisController implements Runnable{
             if (eventQueue.hasEvent()) {
                 TetrisEvent tetrisEvent = eventQueue.getEvent();
                 switch (tetrisEvent) {
+                    case NEW_GAME:
+                        createGame(width, height);
+                        break;
                     case MOVE_LEFT:
                         moveBlockLeft();
                         break;

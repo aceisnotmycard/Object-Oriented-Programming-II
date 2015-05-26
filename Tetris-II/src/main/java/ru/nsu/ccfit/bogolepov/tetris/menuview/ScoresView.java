@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.bogolepov.tetris.menu;
+package ru.nsu.ccfit.bogolepov.tetris.menuview;
 
 import ru.nsu.ccfit.bogolepov.tetris.model.Score;
 
@@ -10,7 +10,7 @@ public class ScoresView extends JFrame {
     List<Integer> scoreArrayList;
     private static final int NUMBER_OF_RECORDS = 5;
 
-    ScoresView() {
+    public ScoresView() {
         scoreArrayList = Score.getResults();
 
         JTextArea textArea = new JTextArea();

@@ -1,7 +1,11 @@
 package ru.nsu.ccfit.bogolepov.chat.client;
 
 /**
- * Created by aceisnotmycard on 5/12/15.
+ * Created by aceisnotmycard on 5/26/15.
  */
 public class Main {
+    public static void main(String[] args) {
+        Client client = new Client("localhost", 6000);
+        client.start();
+    }
 }
