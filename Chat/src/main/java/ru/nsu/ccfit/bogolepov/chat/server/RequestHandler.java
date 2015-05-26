@@ -21,13 +21,17 @@ public class RequestHandler extends Thread {
     private SerializableReceiver receiver;
     private ClientMessage message;
 
+    private int id;
+    private static int handlerCounter = 0;
+
     private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
 
     private boolean isServing;
 
     public RequestHandler(Socket socket, Server server) {
-        context = new RequestHandlerContext(server, transmitter);
+        id = ++handlerCounter;
+        context = new RequestHandlerContext(server, transmitter, id);
         try {
             outputStream = new ObjectOutputStream(socket.getOutputStream());
             inputStream = new ObjectInputStream(socket.getInputStream());
@@ -47,7 +51,9 @@ public class RequestHandler extends Thread {
     public String getUsername() {
         return context.getUsername();
     }
-
+    public int getUserId() {
+        return id;
+    }
 
     @Override
     public void run() {

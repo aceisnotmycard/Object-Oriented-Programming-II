@@ -37,16 +37,20 @@ public class Server {
         }
     }
 
-    public boolean broadcast(Message message) {
+    synchronized public boolean broadcast(Message message) {
         logger.trace("Server::broadcast");
         requestHandlerList.forEach(rh -> rh.sendMessage(message));
         return true;
     }
 
-    public List<String> getUsernames() {
+    synchronized public List<String> getUsernames() {
         logger.trace("Server::getUsernames");
         List<String> usernames = new ArrayList<>();
         requestHandlerList.forEach(rh -> usernames.add(rh.getUsername()));
         return usernames;
+    }
+
+    synchronized public void remove(int id) {
+        requestHandlerList.removeIf(rh -> rh.getUserId() == id);
     }
 }

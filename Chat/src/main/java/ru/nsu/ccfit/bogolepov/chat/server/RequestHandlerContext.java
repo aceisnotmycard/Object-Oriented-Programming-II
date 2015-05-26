@@ -14,10 +14,13 @@ public class RequestHandlerContext implements ServerContext {
     private Server server;
     private String username;
 
+    private int id;
+
     private Logger logger = LogManager.getLogger(getClass());
     private Transmitter transmitter;
 
-    public RequestHandlerContext(Server server, Transmitter transmitter) {
+    public RequestHandlerContext(Server server, Transmitter transmitter, int id) {
+        this.id = id;
         this.transmitter = transmitter;
         this.server = server;
     }
@@ -41,6 +44,7 @@ public class RequestHandlerContext implements ServerContext {
 
     @Override
     public void logout() {
+        server.remove(id);
         if (!server.broadcast(new UserDisconnectedMessage(username))) {
             transmitter.send(new ErrorMessage("Cannot disconnect, lol"));
         }
