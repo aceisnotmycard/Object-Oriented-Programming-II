@@ -2,21 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="ce0da2ad-b7d8-4641-93d4-3e5a000fce6d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Client.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ClientView.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ClientView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/server_messages/ErrorMessage.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/server_messages/ErrorMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Receiver.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Receiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandler.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableReceiver.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableTransmitter.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableTransmitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ServerListener.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ServerListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ServerListenerContext.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ServerListenerContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/server_messages/ServerTextMessage.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/server_messages/ServerTextMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO.md" afterPath="$PROJECT_DIR$/TODO.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/server_messages/UsersListMessage.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/server_messages/UsersListMessage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Chat.iws" />
@@ -75,13 +60,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClientView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ClientView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17928287">
+            <state vertical-scroll-proportion="0.0">
               <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TODO.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TODO.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.25695932">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -156,16 +154,6 @@
                 <element signature="e#1743#1744#0" expanded="true" />
                 <element signature="e#1783#1784#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1005,7 +993,7 @@
       <workItem from="1432657243420" duration="6706000" />
       <workItem from="1432701119395" duration="27000" />
       <workItem from="1432709303461" duration="6737000" />
-      <workItem from="1432731146553" duration="481000" />
+      <workItem from="1432731146553" duration="588000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1431442830382</created>
@@ -1031,11 +1019,17 @@
       <option name="project" value="LOCAL" />
       <updated>1432670924606</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added more message types&#10;Correctly showing messages&#10;Correctly breaking connection&#10;Synchronized methods in server class&#10;Removable RequestHandlers&#10;">
+      <created>1432731828935</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1432731828935</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42635000" />
+    <option name="totallyTimeSpent" value="42742000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1058,9 +1052,9 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39948782" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290653" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290653" sideWeight="0.49713877" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1094,7 +1088,8 @@
     <MESSAGE value="Initial" />
     <MESSAGE value="Added more message types&#10;Correctly showing messages&#10;Correctly breaking connection" />
     <MESSAGE value="Added more message types&#10;Correctly showing messages&#10;Correctly breaking connection&#10;Synchronized methods in server class&#10;Removable RequestHandlers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more message types&#10;Correctly showing messages&#10;Correctly breaking connection&#10;Synchronized methods in server class&#10;Removable RequestHandlers" />
+    <MESSAGE value="Added more message types&#10;Correctly showing messages&#10;Correctly breaking connection&#10;Synchronized methods in server class&#10;Removable RequestHandlers&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more message types&#10;Correctly showing messages&#10;Correctly breaking connection&#10;Synchronized methods in server class&#10;Removable RequestHandlers&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1272,16 +1267,6 @@
           <caret line="525" column="33" selection-start-line="525" selection-start-column="33" selection-end-line="525" selection-end-column="33" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TODO.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.172414">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Transmitter.java">
@@ -1506,10 +1491,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ClientView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17928287">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TODO.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25695932">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
