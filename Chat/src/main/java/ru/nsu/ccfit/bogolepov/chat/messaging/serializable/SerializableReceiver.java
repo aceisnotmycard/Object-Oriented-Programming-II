@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class SerializableReceiver implements Receiver {
-    Logger logger = LogManager.getLogger(getClass());
-    ObjectInputStream inputStream;
+    private Logger logger = LogManager.getLogger(getClass());
+    private ObjectInputStream inputStream;
 
     public SerializableReceiver(ObjectInputStream stream) {
         this.inputStream = stream;

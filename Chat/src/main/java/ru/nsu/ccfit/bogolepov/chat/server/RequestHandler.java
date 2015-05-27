@@ -6,6 +6,7 @@ import ru.nsu.ccfit.bogolepov.chat.messaging.ClientMessage;
 import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
 import ru.nsu.ccfit.bogolepov.chat.messaging.serializable.SerializableReceiver;
 import ru.nsu.ccfit.bogolepov.chat.messaging.serializable.SerializableTransmitter;
+import ru.nsu.ccfit.bogolepov.chat.messaging.server_messages.ErrorMessage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,7 +15,7 @@ import java.net.Socket;
 
 public class RequestHandler extends Thread {
 
-    Logger logger = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
 
     private RequestHandlerContext context;
     private SerializableTransmitter transmitter;
@@ -31,7 +32,6 @@ public class RequestHandler extends Thread {
 
     public RequestHandler(Socket socket, Server server) {
         id = ++handlerCounter;
-        context = new RequestHandlerContext(server, transmitter, id);
         try {
             outputStream = new ObjectOutputStream(socket.getOutputStream());
             inputStream = new ObjectInputStream(socket.getInputStream());
@@ -40,6 +40,7 @@ public class RequestHandler extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        context = new RequestHandlerContext(server, transmitter, id);
     }
 
     public Void sendMessage(Message message) {
@@ -70,6 +71,7 @@ public class RequestHandler extends Thread {
                 }
             } catch (ClassNotFoundException e) {
                 logger.warn(e.getMessage());
+                sendMessage(new ErrorMessage("Unsupported message type"));
             } catch (IOException e) {
                 logger.error(e.getMessage());
                 break;

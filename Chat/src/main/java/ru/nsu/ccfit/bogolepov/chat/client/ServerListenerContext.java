@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ServerListenerContext implements ClientContext {
 
-    Client client;
+    private Client client;
 
     public ServerListenerContext(Client client) {
         this.client = client;

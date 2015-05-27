@@ -40,9 +40,9 @@ public class Client {
             context = new ServerListenerContext(this);
             view = new ClientView(this);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            // TODO
         } catch (IOException e) {
-            e.printStackTrace();
+            // TODO
         }
     }
 

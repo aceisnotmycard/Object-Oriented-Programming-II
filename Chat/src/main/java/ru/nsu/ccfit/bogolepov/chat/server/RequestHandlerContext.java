@@ -27,7 +27,6 @@ public class RequestHandlerContext implements ServerContext {
 
     @Override
     public void broadcast(Message message) {
-
         logger.trace(getClass().getSimpleName() + "::broadcast");
         if (!server.broadcast(message)) {
             transmitter.send(new ErrorMessage("Cannot broadcast message to other users"));
@@ -55,7 +54,8 @@ public class RequestHandlerContext implements ServerContext {
         logger.trace(getClass().getSimpleName() + "::getUsers");
         List<String> usernames = server.getUsernames();
         if (usernames != null) {
-            transmitter.send(new UsersListMessage(usernames));
+            Message m = new UsersListMessage(usernames);
+            transmitter.send(m);
         } else {
             transmitter.send(new ErrorMessage("Cannot retrieve list of users"));
         }

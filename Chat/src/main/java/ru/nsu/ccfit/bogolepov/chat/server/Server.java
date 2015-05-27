@@ -47,6 +47,7 @@ public class Server {
         logger.trace("Server::getUsernames");
         List<String> usernames = new ArrayList<>();
         requestHandlerList.forEach(rh -> usernames.add(rh.getUsername()));
+        usernames.forEach(logger::trace);
         return usernames;
     }
 

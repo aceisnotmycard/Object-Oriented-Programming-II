@@ -12,10 +12,9 @@ public class ServerListener implements Runnable {
 
     private Logger logger = LogManager.getLogger(getClass());
 
-
-    Receiver receiver;
-    ClientContext context;
-    ServerMessage message;
+    private Receiver receiver;
+    private ClientContext context;
+    private ServerMessage message;
 
     public ServerListener(Receiver receiver, ClientContext context) {
         this.receiver = receiver;

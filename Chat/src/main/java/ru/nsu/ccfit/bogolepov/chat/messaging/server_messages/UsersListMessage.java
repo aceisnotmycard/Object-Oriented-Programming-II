@@ -6,9 +6,6 @@ import ru.nsu.ccfit.bogolepov.chat.messaging.ServerMessage;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by aceisnotmycard on 5/26/15.
- */
 public class UsersListMessage implements ServerMessage, Serializable {
 
     private List<String> users;
