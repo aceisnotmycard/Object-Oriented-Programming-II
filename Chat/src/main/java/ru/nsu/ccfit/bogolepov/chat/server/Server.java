@@ -24,11 +24,12 @@ public class Server {
     }
 
     public void start() {
-        logger.info("Server started...");
+        logger.info("Server::start");
         boolean isServing = true;
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while(isServing) {
                 Socket socket = serverSocket.accept();
+                logger.trace("New client connected");
                 RequestHandler rh = new RequestHandler(socket, this);
                 requestHandlerList.add(rh);
                 rh.start();
@@ -47,11 +48,11 @@ public class Server {
         logger.trace("Server::getUsernames");
         List<String> usernames = new ArrayList<>();
         requestHandlerList.forEach(rh -> usernames.add(rh.getUsername()));
-        usernames.forEach(logger::trace);
         return usernames;
     }
 
     synchronized public void remove(int id) {
+        logger.trace("Server::remove");
         requestHandlerList.removeIf(rh -> rh.getUserId() == id);
     }
 }

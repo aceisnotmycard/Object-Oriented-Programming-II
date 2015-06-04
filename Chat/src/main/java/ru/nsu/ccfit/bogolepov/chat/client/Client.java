@@ -48,7 +48,7 @@ public class Client {
             context = new ServerListenerContext(this);
             view = new ClientView(this);
         } catch (UnknownHostException e) {
-            // TODO
+            disconnect();
         } catch (IOException e) {
             // TODO
         }

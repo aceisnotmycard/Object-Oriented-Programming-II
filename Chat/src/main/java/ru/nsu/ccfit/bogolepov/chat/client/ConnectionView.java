@@ -26,10 +26,9 @@ public class ConnectionView extends JFrame {
         usernameTextField = new JTextField("Username");
         confirmButton = new JButton("Log in");
 
-        hostTextField.setSize(40, 200);
-        portTextField.setSize(40, 200);
-        usernameTextField.setSize(40, 200);
-        confirmButton.setSize(80, 200);
+        hostTextField.setColumns(20);
+        portTextField.setColumns(20);
+        usernameTextField.setColumns(20);
 
         confirmButton.addActionListener(e -> {
             host = hostTextField.getText();

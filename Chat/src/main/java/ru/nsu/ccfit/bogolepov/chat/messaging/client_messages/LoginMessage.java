@@ -2,13 +2,11 @@ package ru.nsu.ccfit.bogolepov.chat.messaging.client_messages;
 
 import ru.nsu.ccfit.bogolepov.chat.messaging.ClientMessage;
 import ru.nsu.ccfit.bogolepov.chat.messaging.ServerContext;
+import ru.nsu.ccfit.bogolepov.chat.messaging.Xmlable;
 
 import java.io.Serializable;
 
-/**
- * Created by aceisnotmycard on 5/26/15.
- */
-public class LoginMessage implements ClientMessage, Serializable {
+public class LoginMessage implements ClientMessage, Serializable, Xmlable {
 
     private String username;
 
