@@ -13,8 +13,6 @@ public class ClientView extends JFrame {
 
     ClientView(Client client) {
 
-        client.setUsername(JOptionPane.showInputDialog(this, "Username:"));
-
         this.client = client;
         messageHistoryArea = new JTextArea(80, 80);
 
@@ -24,7 +22,8 @@ public class ClientView extends JFrame {
         closeConnectionButton = new JButton("Close connection");
         closeConnectionButton.addActionListener(e -> {
             client.disconnect();
-            System.exit(0);
+            setVisible(false);
+            dispose();
         });
 
         JPanel upperPanel = new JPanel(new GridLayout(1, 2));

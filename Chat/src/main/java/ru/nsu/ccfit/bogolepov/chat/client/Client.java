@@ -20,7 +20,10 @@ import java.util.List;
 public class Client {
 
     private Socket socket;
-    private String username = "Anon";
+
+//    private String host;
+//    private int port;
+//    private String username;
 
     private Receiver receiver;
     private Transmitter transmitter;
@@ -30,9 +33,14 @@ public class Client {
     private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
 
-    public Client(String server, int port) {
+    public Client() {
+        new ConnectionView(this);
+    }
+
+    public void start(String host, int port, String username) {
+
         try {
-            socket = new Socket(server, port);
+            socket = new Socket(host, port);
             inputStream = new ObjectInputStream(socket.getInputStream());
             outputStream = new ObjectOutputStream(socket.getOutputStream());
             transmitter = new SerializableTransmitter(outputStream);
@@ -44,13 +52,7 @@ public class Client {
         } catch (IOException e) {
             // TODO
         }
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void start() {
         Thread thread = new Thread(new ServerListener(receiver, context));
         thread.start();
         transmitter.send(new LoginMessage(username));
@@ -76,6 +78,7 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        new ConnectionView(this);
     }
 
     public void showMessage(String text) {

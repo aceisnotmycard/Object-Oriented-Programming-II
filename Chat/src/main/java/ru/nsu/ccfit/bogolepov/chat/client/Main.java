@@ -5,7 +5,6 @@ package ru.nsu.ccfit.bogolepov.chat.client;
  */
 public class Main {
     public static void main(String[] args) {
-        Client client = new Client("localhost", 6000);
-        client.start();
+        Client client = new Client();
     }
 }
