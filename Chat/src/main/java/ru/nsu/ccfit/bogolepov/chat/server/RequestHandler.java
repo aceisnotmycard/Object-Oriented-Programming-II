@@ -1,12 +1,8 @@
 package ru.nsu.ccfit.bogolepov.chat.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import ru.nsu.ccfit.bogolepov.chat.messaging.ClientMessage;
-import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
+import ru.nsu.ccfit.bogolepov.chat.messaging.*;
 import ru.nsu.ccfit.bogolepov.chat.messaging.serializable.SerializableReceiver;
 import ru.nsu.ccfit.bogolepov.chat.messaging.serializable.SerializableTransmitter;
-import ru.nsu.ccfit.bogolepov.chat.messaging.server_messages.ErrorMessage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,45 +11,32 @@ import java.net.Socket;
 
 public class RequestHandler extends Thread {
 
-    private Logger logger = LogManager.getLogger(getClass());
-
     private RequestHandlerContext context;
-    private SerializableTransmitter transmitter;
-    private SerializableReceiver receiver;
-    private ClientMessage message;
-
-    private int id;
-    private static int handlerCounter = 0;
-
-    private ObjectInputStream inputStream;
-    private ObjectOutputStream outputStream;
+    private Transmitter<Message<ClientContext>> transmitter;
+    private Receiver<Message<ServerContext>> receiver;
 
     private boolean isServing;
 
     public RequestHandler(Socket socket, Server server) {
-        id = ++handlerCounter;
         try {
-            outputStream = new ObjectOutputStream(socket.getOutputStream());
-            inputStream = new ObjectInputStream(socket.getInputStream());
-            transmitter = new SerializableTransmitter(outputStream);
-            receiver = new SerializableReceiver(inputStream);
+            transmitter = new SerializableTransmitter<>(new ObjectOutputStream(socket.getOutputStream()));
+            receiver = new SerializableReceiver<>(new ObjectInputStream(socket.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        context = new RequestHandlerContext(server, transmitter, id);
+        context = new RequestHandlerContext(server, transmitter);
     }
 
-    public Void sendMessage(Message message) {
-        logger.trace(getClass().getSimpleName() + "::sendMessage");
+    public void sendMessage(Message<ClientContext> message) {
         transmitter.send(message);
-        return null;
     }
 
     public String getUsername() {
         return context.getUsername();
     }
-    public int getUserId() {
-        return id;
+
+    public boolean isRequiredUser(String required) {
+        return getUsername().equals(required);
     }
 
     @Override
@@ -61,39 +44,22 @@ public class RequestHandler extends Thread {
         isServing = true;
         while (isServing) {
             try {
-                message = (ClientMessage) receiver.receive();
-                if (message != null) {
-                    logger.info("Received message");
-                    if (context == null) {
-                        logger.warn("Null context!");
-                    }
-                    message.exec(context);
-                }
+                receiver.receive().ifPresent(msg -> {
+                    System.out.println("Message received from " + getUsername());
+                    msg.exec(context);
+                });
             } catch (ClassNotFoundException e) {
-                logger.warn(e.getMessage());
-                sendMessage(new ErrorMessage("Unsupported message type"));
+                e.printStackTrace();
             } catch (IOException e) {
-                logger.error(e.getMessage());
-                break;
+                e.printStackTrace();
             }
         }
         close();
     }
 
     public void close() {
-        if (outputStream != null) {
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-            }
-        }
-        if (inputStream != null) {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-            }
-        }
+        isServing = false;
+        transmitter.close();
+        receiver.close();
     }
 }

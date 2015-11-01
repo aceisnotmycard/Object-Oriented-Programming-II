@@ -1,27 +1,29 @@
 package ru.nsu.ccfit.bogolepov.chat.messaging.serializable;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
 import ru.nsu.ccfit.bogolepov.chat.messaging.Receiver;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Optional;
 
-public class SerializableReceiver implements Receiver {
-    private Logger logger = LogManager.getLogger(getClass());
+public class SerializableReceiver<T extends Message> implements Receiver<T> {
     private ObjectInputStream inputStream;
 
     public SerializableReceiver(ObjectInputStream stream) {
         this.inputStream = stream;
     }
 
-    public Message receive() throws ClassNotFoundException, IOException {
-        Message message;
-        message = (Message) inputStream.readObject();
-        if (message != null) {
-            logger.info("Message read successfully");
+    public Optional<T> receive() throws ClassNotFoundException, IOException {
+        return Optional.of((T) inputStream.readObject());
+    }
+
+    @Override
+    public void close() {
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return message;
     }
 }

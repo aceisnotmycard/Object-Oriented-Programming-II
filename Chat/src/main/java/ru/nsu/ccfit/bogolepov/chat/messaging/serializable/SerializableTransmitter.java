@@ -1,28 +1,34 @@
 package ru.nsu.ccfit.bogolepov.chat.messaging.serializable;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
 import ru.nsu.ccfit.bogolepov.chat.messaging.Transmitter;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class SerializableTransmitter implements Transmitter {
+public class SerializableTransmitter<T extends Message> implements Transmitter<T> {
     private ObjectOutputStream stream;
-
-    private Logger logger = LogManager.getLogger(getClass());
 
     public SerializableTransmitter(ObjectOutputStream stream) {
         this.stream = stream;
     }
 
     @Override
-    public void send(Message message) {
+    public void send(T message) {
         try {
             stream.writeObject(message);
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void close() {
+        try {
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -14,22 +14,22 @@ public class ServerListenerContext implements ClientContext {
 
     @Override
     public void showError(String message) {
-        client.showMessage("ERROR: " + message);
+        client.show("ERROR: " + message);
     }
 
     @Override
     public void showMessage(String message) {
-        client.showMessage(message);
+        client.show(message);
     }
 
     @Override
     public void notifyUserConnected(String user) {
-        client.showMessage(user +  " connected");
+        client.show(user +  " connected");
     }
 
     @Override
     public void notifyUserDisconnected(String user) {
-        client.showMessage(user + " disconnected");
+        client.show(user + " disconnected");
     }
 
     @Override

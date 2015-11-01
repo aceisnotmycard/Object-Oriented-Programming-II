@@ -1,58 +1,48 @@
 package ru.nsu.ccfit.bogolepov.chat.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import ru.nsu.ccfit.bogolepov.chat.messaging.ClientContext;
 import ru.nsu.ccfit.bogolepov.chat.messaging.Message;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Server {
 
-    private Logger logger = LogManager.getLogger(getClass());
-
-    private List<RequestHandler> requestHandlerList;
+    private List<RequestHandler> handlers;
     private int port;
 
     public Server(int port) {
-        requestHandlerList = new ArrayList<>();
+        handlers = new ArrayList<>();
         this.port = port;
     }
 
     public void start() {
-        logger.info("Server::start");
-        boolean isServing = true;
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            while(isServing) {
+            while (true) {
                 Socket socket = serverSocket.accept();
-                logger.trace("New client connected");
                 RequestHandler rh = new RequestHandler(socket, this);
-                requestHandlerList.add(rh);
+                handlers.add(rh);
                 rh.start();
+                System.out.println("New client is served");
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    synchronized public boolean broadcast(Message message) {
-        logger.trace("Server::broadcast");
-        requestHandlerList.forEach(rh -> rh.sendMessage(message));
-        return true;
+    synchronized public void broadcast(Message<ClientContext> message) {
+        handlers.forEach(rh -> rh.sendMessage(message));
     }
 
     synchronized public List<String> getUsernames() {
-        logger.trace("Server::getUsernames");
-        List<String> usernames = new ArrayList<>();
-        requestHandlerList.forEach(rh -> usernames.add(rh.getUsername()));
-        return usernames;
+        return handlers.stream().map(RequestHandler::getUsername).collect(Collectors.toList());
     }
 
-    synchronized public void remove(int id) {
-        logger.trace("Server::remove");
-        requestHandlerList.removeIf(rh -> rh.getUserId() == id);
+    synchronized public void remove(String username) {
+        handlers.removeIf(requestHandler -> requestHandler.isRequiredUser(username));
     }
 }

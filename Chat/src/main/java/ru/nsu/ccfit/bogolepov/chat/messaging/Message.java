@@ -1,4 +1,8 @@
 package ru.nsu.ccfit.bogolepov.chat.messaging;
 
-public interface Message {
+
+import java.io.Serializable;
+
+public interface Message<T> extends Serializable {
+    void exec(T context);
 }
