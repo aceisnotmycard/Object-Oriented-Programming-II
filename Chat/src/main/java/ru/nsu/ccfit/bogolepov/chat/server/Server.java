@@ -28,7 +28,6 @@ public class Server {
                 RequestHandler rh = new RequestHandler(socket, this);
                 handlers.add(rh);
                 rh.start();
-                System.out.println("New client is served");
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -61,10 +61,4 @@ public class RequestHandlerContext implements ServerContext {
     public String getUsername() {
         return username;
     }
-
-    @Override
-    public void broadcast(String message) {
-        System.out.println(username + " broadcasting: " + message);
-        server.broadcast(ctx -> ctx.showMessage(message));
-    }
 }

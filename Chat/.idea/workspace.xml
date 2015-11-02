@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce0da2ad-b7d8-4641-93d4-3e5a000fce6d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Client.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Client.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableTransmitter.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ClientContext.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ClientContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Main.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Main.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandler.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Message.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Receiver.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Receiver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableReceiver.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableTransmitter.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableTransmitter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ServerListenerContext.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ServerListenerContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Transmitter.java" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Transmitter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Chat.iws" />
@@ -97,20 +96,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+              <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientContext.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ClientContext.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -154,10 +143,20 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+              <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerContext.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -486,17 +485,17 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ClientMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/Message.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ClientView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableTransmitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/ServerListenerContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ClientContext.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/client/Client.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java" />
       </list>
     </option>
   </component>
@@ -651,40 +650,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="messaging" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="messaging" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serializable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -922,7 +887,7 @@
       <workItem from="1446292350515" duration="326000" />
       <workItem from="1446292691692" duration="2126000" />
       <workItem from="1446304371047" duration="19831000" />
-      <workItem from="1446441779132" duration="8477000" />
+      <workItem from="1446441779132" duration="8938000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1431442830382</created>
@@ -972,11 +937,17 @@
       <option name="project" value="LOCAL" />
       <updated>1446397951065</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Different improvements">
+      <created>1446459141676</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1446459141676</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80597000" />
+    <option name="totallyTimeSpent" value="81058000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -989,7 +960,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1005,7 +976,7 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26752505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26752505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1038,7 +1009,8 @@
     <MESSAGE value="Added more message types&#10;Correctly showing messages&#10;Correctly breaking connection&#10;Synchronized methods in server class&#10;Removable RequestHandlers&#10;" />
     <MESSAGE value="Added host, port and username selection" />
     <MESSAGE value="Better at everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better at everything" />
+    <MESSAGE value="Different improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Different improvements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1307,14 +1279,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07968128">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/util/stream/Stream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1397,26 +1361,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/serializable/SerializableTransmitter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1424,6 +1368,34 @@
           <folding>
             <element signature="e#453#454#0" expanded="true" />
             <element signature="e#489#490#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/messaging/ServerContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/ccfit/bogolepov/chat/server/RequestHandlerContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
