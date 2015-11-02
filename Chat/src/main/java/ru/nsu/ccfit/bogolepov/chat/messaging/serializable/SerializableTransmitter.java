@@ -19,7 +19,7 @@ public class SerializableTransmitter<T extends Message> implements Transmitter<T
         try {
             stream.writeObject(message);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot send message");
         }
     }
 
@@ -28,7 +28,7 @@ public class SerializableTransmitter<T extends Message> implements Transmitter<T
         try {
             stream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot close transmitter");
         }
     }
 }

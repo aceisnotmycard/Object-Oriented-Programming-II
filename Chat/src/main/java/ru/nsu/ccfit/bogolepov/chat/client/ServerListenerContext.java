@@ -23,6 +23,16 @@ public class ServerListenerContext implements ClientContext {
     }
 
     @Override
+    public void showMessageFrom(String message, String from) {
+        client.show(from + ": " + message);
+    }
+
+    @Override
+    public void kick() {
+        System.exit(0);
+    }
+
+    @Override
     public void notifyUserConnected(String user) {
         client.show(user +  " connected");
     }

@@ -19,8 +19,7 @@ public class Client {
     private ClientContext context;
     private String username;
 
-    public Client() {
-    }
+    public Client() {}
 
     public void start(String host, int port, String username) {
         try {
@@ -31,14 +30,14 @@ public class Client {
             context = new ServerListenerContext(this);
             Thread thread = new Thread(new ServerListener(receiver, context));
             thread.start();
-            Runnable r = () -> parseCommand(new InputStreamReader(System.in));
-            Thread ui = new Thread(r);
+            Thread ui = new Thread(() -> parseCommand(new InputStreamReader(System.in)));
             ui.start();
             login();
         } catch (UnknownHostException e) {
+            System.out.println("Unknown host");
             disconnect();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -46,7 +45,7 @@ public class Client {
         if (!parse(text)) {
             return;
         }
-        transmitter.send(ctx -> ctx.broadcast(text));
+        transmitter.send(ctx -> ctx.send(text, toUser));
     }
 
     public synchronized void getUsers() {
@@ -61,7 +60,7 @@ public class Client {
         try {
             socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot close socket");
         }
     }
 
@@ -92,7 +91,7 @@ public class Client {
                     getUsers();
                     break;
                 case "DISCONNECT":
-                    disconnect();
+                    System.exit(0);
                     break;
                 case "SEND":
                     System.out.print("TO: ");

@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Server {
@@ -34,15 +35,32 @@ public class Server {
         }
     }
 
+    public void stop() {
+        handlers.forEach(rh -> rh.sendMessage(ctx -> {
+            ctx.showError("Server is shutting down");
+            ctx.kick();
+        }));
+    }
+
+    public void sendTo(String message, String to, String from) {
+        handlers.stream().filter(rh -> rh.isRequiredUser(to)).findFirst()
+                .ifPresent(rh -> rh.sendMessage(ctx -> ctx.showMessageFrom(message, from)));
+    }
+
     synchronized public void broadcast(Message<ClientContext> message) {
         handlers.forEach(rh -> rh.sendMessage(message));
     }
 
     synchronized public List<String> getUsernames() {
-        return handlers.stream().map(RequestHandler::getUsername).collect(Collectors.toList());
+        return handlers.stream().map(RequestHandler::getUsername)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     synchronized public void remove(String username) {
-        handlers.removeIf(requestHandler -> requestHandler.isRequiredUser(username));
+        handlers.stream().filter(rh -> rh.isRequiredUser(username))
+                .findFirst().ifPresent(RequestHandler::close);
+        handlers.removeIf(rh -> rh.isRequiredUser(username));
+        broadcast(ctx -> ctx.notifyUserDisconnected(username));
     }
 }

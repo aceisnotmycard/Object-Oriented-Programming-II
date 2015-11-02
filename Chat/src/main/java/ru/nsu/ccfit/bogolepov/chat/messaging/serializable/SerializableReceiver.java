@@ -23,7 +23,7 @@ public class SerializableReceiver<T extends Message> implements Receiver<T> {
         try {
             inputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot close receiver.");
         }
     }
 }

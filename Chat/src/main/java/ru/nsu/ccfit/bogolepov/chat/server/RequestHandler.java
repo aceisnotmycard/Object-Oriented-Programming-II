@@ -22,9 +22,10 @@ public class RequestHandler extends Thread {
             transmitter = new SerializableTransmitter<>(new ObjectOutputStream(socket.getOutputStream()));
             receiver = new SerializableReceiver<>(new ObjectInputStream(socket.getInputStream()));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot create Request handler: " + e.getMessage());
         }
-        context = new RequestHandlerContext(server, transmitter);
+        context = new RequestHandlerContext(server, transmitter,
+                socket.getInetAddress().getHostAddress() + ":" + socket.getPort());
     }
 
     public void sendMessage(Message<ClientContext> message) {
@@ -35,8 +36,8 @@ public class RequestHandler extends Thread {
         return context.getUsername();
     }
 
-    public boolean isRequiredUser(String required) {
-        return getUsername().equals(required);
+    public boolean isRequiredUser(String requiredUser) {
+        return getUsername() != null && getUsername().equals(requiredUser);
     }
 
     @Override
@@ -49,17 +50,16 @@ public class RequestHandler extends Thread {
                     msg.exec(context);
                 });
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                System.out.println("Received message is incorrect");
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Something went wrong while receiving message from " + getUsername());
             }
         }
-        close();
+        transmitter.close();
+        receiver.close();
     }
 
     public void close() {
         isServing = false;
-        transmitter.close();
-        receiver.close();
     }
 }
